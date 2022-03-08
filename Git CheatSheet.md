@@ -1,7 +1,8 @@
 ```git
 git init
 git add .
-git commit 
-git remote add origin git@github.com:username/new_repo
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:aurbjo/cheatsheets.git
 git push -u origin main
 ```
