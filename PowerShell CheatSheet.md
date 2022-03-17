@@ -25,6 +25,17 @@ Set-ADUser -Identity "Kylo-Ren" -Add @{extensionAttribute1 = 'Ben Solo' }
 Set-ADUser -Identity "Kylo-Ren" -Clear "extensionAttribute1"
 #Add to proxyAddresses
 Set-ADUser -Identity "Kylo-Ren" -Add @{proxyAddresses = "smtp:ben.solo@empire.org" }
+
+#Remove all x500 from proxyAddresses for all users
+Get-ADUser -filter {proxyAddresses -like '*x500*'} -Properties proxyAddresses | ForEach-Object{
+
+    $User = $_
+    $User | Select-object -ExpandProperty proxyAddresses | ForEach-object {
+        $AddressToRemove = $_
+        Set-ADUser -Identity $User -Remove @{ProxyAddresses = $AddressToRemove}
+    }
+}
+
 ```
 
 "Backup" AD
