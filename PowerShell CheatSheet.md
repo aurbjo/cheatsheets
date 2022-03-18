@@ -35,7 +35,29 @@ Get-ADUser -filter {proxyAddresses -like '*x500*'} -Properties proxyAddresses | 
         Set-ADUser -Identity $User -Remove @{ProxyAddresses = $AddressToRemove}
     }
 }
+```
 
+Get all AD Users and their email details to a CSV file, excludes x400, x500 sip and mail.onmicrosoft.com items from proxyAddresses array.
+
+```powershell
+
+Get-ADUser -Filter * -Properties * | ForEach-Object {
+
+    [PSCustomObject]@{
+        Enabled = $_.enabled
+        Name = $_.Name
+        SamAccountName = $_.SamAccountName
+        UserPrincipalName = $_.UserPrincipalName
+        targetaddress = $_.targetaddress
+        Email = $_.mail
+        Office = $_.Office
+        Department = $_.Department
+        Description = $_.Description
+        ProxyAddresses = ($_ | Select-Object -ExpandProperty proxyAddresses | Where-Object{$_ -notmatch "sip:" -and $_ -notmatch "x500:" -and $_ -notmatch "x400:" -and $_ -notmatch "@*.mail.onmicrosoft.com"}) -join ";"
+        DistinguishedName = $_.distinguishedName
+    }
+
+} | ConvertTo-Csv | Out-File -Encoding utf8 -FilePath "$($env:USERPROFILE)\Documents\$($env:COMPUTERNAME)_UsersExport_$(Get-Date -Format "dd_MM_yyyy_hh_mm_ss").csv"
 ```
 
 "Backup" AD
