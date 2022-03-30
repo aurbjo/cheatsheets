@@ -195,3 +195,13 @@ $HashTable = @{
 }
 Copy-Item @HashTable
 ```
+
+### Comments
+
+```powershell
+#Requires -Version 5.0
+#Requires -PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn -Version 1.0
+#Requires -Modules PSWindowsUpdate
+#Requires -Modules @{ ModuleName="PSWindowsUpdate"; ModuleVersion="2.2.0" }
+#Requires -RunAsAdministrator
+```
