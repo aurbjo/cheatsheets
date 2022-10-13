@@ -5,5 +5,6 @@ Happy scripting 🧑‍💻
 
 - [PowerShell](PowerShell%20CheatSheet.md)
 - [PowerShell ADSISearcher](PowerShell%20ADSISearcher.md)
+- [PowerShell Exchange Online](PowerShell%20Exchange%20Online.md)
 - [Git](Git%20CheatSheet.md)
 - [Install Stuff](Install%20stuff.md)
