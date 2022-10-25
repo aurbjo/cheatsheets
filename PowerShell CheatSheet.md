@@ -92,6 +92,7 @@ https://4sysops.com/wiki/useful-net-classes-for-powershell/
 [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite()
 ```
 
+
 ## LDAP
 
 Search for users in remote LDAP directory.
@@ -173,7 +174,37 @@ Invoke-Command  -Session $Sessions -ScriptBlock {
 }
 ```
 
+# Logging 
+
+##  PSLogging
+``` powershell
+Import-Module PSLogging
+
+$ScriptDirectory = Split-Path $MyInvocation.MyCommand.Path
+Set-Location Microsoft.PowerShell.Core\FileSystem::$ScriptDirectory
+
+$LogPath = ".\Log\"
+If((Test-Path $LogPath) -eq $false){
+    New-Item -Path $LogPath -ItemType Directory
+}
+$LogFile = "MyPSLog_$(get-date -Format "dd-MM-yy").log"
+
+Start-Log -LogPath $LogPath -LogName $LogFile -ScriptVersion "4.0" -ToScreen
+Write-LogInfo -LogPath "$LogPath+$LogFile" -Message "[$(Get-Date -Format "dd-MM-yy HH:mm:ss")] Processing" -ToScreen
+```
+
 # Random
+
+### PSWindowsUpdate
+```powershell
+Install-Module -Name PSWindowsUpdate
+
+Get-WindowsUpdate # List all updates
+Install-WindowsUpdate -AcceptAll -Install -AutoReboot # Install
+
+Get-WindowsUpdate -AcceptAll -Install -AutoReboot # Get and install with boot
+Get-WindowsUpdate -AcceptAll -Install # Get and install without boot
+```
 
 ### Azure AD Connect
 
