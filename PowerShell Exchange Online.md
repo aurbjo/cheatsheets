@@ -9,6 +9,9 @@ Install-Module ExchangeOnlineManagement
 Connect-ExchangeOnline -UserPrincipalName my.admin.account@domain.com
 # For CSP (Partner) accounts
 Connect-ExchangeOnline -DelegatedOrganization mycompany.onmirosoft.com -UserPrincipalName my.csp.account@domain.com
+# With prefix (Get-SourceMailbox, Set-SourceMailbox ...)
+Connect-ExchangeOnline -DelegatedOrganization sourcecompany.onmirosoft.com -UserPrincipalName my.source.account@domain.com -Prefix Source
+Connect-ExchangeOnline -DelegatedOrganization destinationcompany.onmirosoft.com -UserPrincipalName my.destination.account@domain.com -Prefix Destination
 ```
 
 ## Working with Microsoft 356 Groups
