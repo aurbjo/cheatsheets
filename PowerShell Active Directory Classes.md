@@ -1,4 +1,5 @@
-'''powershell
+Useful .NET classes when working with Actice Directory
+```powershell
 # List all Global Catalogs in the forest (Domain Controllers)
 [System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest().GlobalCatalogs
 
@@ -16,4 +17,4 @@
 
 # Get the local computer’s site information:
 [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite()
-'''
+```
