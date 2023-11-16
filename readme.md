@@ -1,6 +1,6 @@
 # Powershell CheatSheet
 
-This is a collection of my powershell commands and tricks that i need to write down so i don't have to look them up myself all the time.<br>
+Collection of my PowerShell commands and scripts that i use often.<br>
 Happy scripting 🧑‍💻
 
 - [PowerShell](PowerShell%20CheatSheet.md)
