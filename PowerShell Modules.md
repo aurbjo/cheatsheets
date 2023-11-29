@@ -1,10 +1,10 @@
-#Exchange Online
+Exchange Online
 ```powershell
 Install-Module ExchangeOnline
 Connect-ExchangeOnline -DelegatedOrganization <customerdomain.onmicrosoft.com>
 ```
 
-#MS Online
+MS Online
 ```powershell
 Install-Module MSOnline
 Connect-MsolService
@@ -12,13 +12,13 @@ Get-MsolPartnerContract -DomainName <customerdomain.onmicrosoft.com> | Select-Ob
 Get-MsolUser -All -TenantId <TenantID>
 ```
 
-#Azure AD
+Azure AD
 ```powershell
 Install-Module AzureAD
 Connect-AzureAD -TenantId <TenantID>
 ```
 
-#Microsoft Teams and Skype for Business
+Microsoft Teams and Skype for Business
 ```powershell
 Install-Module MicrosoftTeams
 Connect-MicrosoftTeams -TenantId <TenantID>
@@ -28,12 +28,12 @@ $session = New-CsOnlineSession
 Import-PSSession $session
 ```
 
-#SharePoint Online
+SharePoint Online
 ```powershell
 #Unsupported 😣
 ```
 
-#Security & Compliance Center
+Security & Compliance Center
 ```powershell
 Connect-IPPSSession -DelegatedOrganization <CustomerDomain>
 ```
