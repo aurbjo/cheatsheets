@@ -1,4 +1,4 @@
-#Exchange Online Module (v2)
+#Exchange Online Module
 ```powershell
 Install-Module ExchangeOnline
 Connect-ExchangeOnline -DelegatedOrganization <customerdomain.onmicrosoft.com>
