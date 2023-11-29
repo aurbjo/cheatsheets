@@ -1,6 +1,6 @@
 # Powershell CheatSheet
 
-This is a collection of my powershell commands and tricks that i need to write down so i don't have to look them up myself all the time.<br>
+Collection of my most used PowerShell commands and tricks.<br>
 Happy scripting 🧑‍💻
 
 ## 🔐 SecureString and PSCredential object
