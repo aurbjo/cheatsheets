@@ -81,8 +81,7 @@ $Objects | Out-File -Encoding utf8 "$($env:USERPROFILE)\Desktop\$($Domain.PdcRol
 $UsersImport = Get-Content -Raw -Path Users.json | ConvertFrom-Json
 ```
 
-Generate ImmutableIDs for EntraID to perform a hard match
-Useful when migrating users to new OnPrem AD and syncing them with Microsoft Entra Connect
+Create ImmutableIDs to perform a hard match, useful when migrating users to new OnPrem AD and syncing them with Microsoft Entra Connect
 ```powershell
 $SearchBase = "OU=Starfleet Command,DC=galaxy,DC=com"
 
