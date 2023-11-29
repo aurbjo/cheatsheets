@@ -8,6 +8,7 @@ Connect-ExchangeOnline -DelegatedOrganization <customerdomain.onmicrosoft.com>
 ```powershell
 Install-Module MSOnline
 Connect-MsolService
+# If you're using a CSP tenant
 Get-MsolPartnerContract -DomainName <customerdomain.onmicrosoft.com> | Select-Object TenantID
 Get-MsolUser -All -TenantId <TenantID>
 ```
