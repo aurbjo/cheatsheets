@@ -81,6 +81,26 @@ $Objects | Out-File -Encoding utf8 "$($env:USERPROFILE)\Desktop\$($Domain.PdcRol
 $UsersImport = Get-Content -Raw -Path Users.json | ConvertFrom-Json
 ```
 
+Generate ImmutableIDs for EntraID to perform a hard match
+Useful when migrating users to new OnPrem AD and syncing them with Microsoft Entra Connect
+```powershell
+$SearchBase = "OU=Starfleet Command,DC=galaxy,DC=com"
+
+Get-ADUser -SearchBase $SearchBase -Filter * | ForEach-Object {
+    [PSCustomObject]@{
+        SamAccountName = $_.SamAccountName
+        UserPrincipalName = $_.UserPrincipalName
+        GUID = $_.objectGuid
+        ImmutableId = [System.Convert]::ToBase64String(($_.objectGuid).ToByteArray())
+    }
+}
+
+<# Set the new ID in Entra ID with this command
+Get-MSolUser -UserPrincipalName <User@domain.com> | Set-MsolUser -ImmutableId <ImmutableId>
+#>
+
+```
+
 Useful .NET Classes for ActiveDirectory<br>
 https://4sysops.com/wiki/useful-net-classes-for-powershell/
 
