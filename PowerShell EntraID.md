@@ -4,15 +4,11 @@ Useful when migrating to new OnPrem AD, will generate ImmutableId's for all user
 $SearchBase = "OU=Starfleet Command,DC=galaxy,DC=com"
 
 Get-ADUser -SearchBase $SearchBase -Filter * | ForEach-Object {
-    $GUID = [guid](($_).objectGuid)
-    $immutableId = [System.Convert]::ToBase64String($guid.ToByteArray())
-
     [PSCustomObject]@{
         SamAccountName = $_.SamAccountName
         UserPrincipalName = $_.UserPrincipalName
-        GUID = $GUID
-        ImmutableId = $immutableId
-
+        GUID = $_.objectGuid
+        ImmutableId = [System.Convert]::ToBase64String(($_.objectGuid).ToByteArray())
     }
 }
 
