@@ -16,7 +16,7 @@ $PasswordPlainText = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($
 
 ## 📚Active Directory
 
-Get-ADUser by userPrincipalName.
+Get-ADUser by userPrincipalName
 
 ```powershell
 Get-ADuser -Filter "userPrincipalName -eq 'kylo-ren@empire.org'"
