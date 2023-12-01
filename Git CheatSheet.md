@@ -1,8 +1,8 @@
 Set git global config
 
 ```bash
-git config --global user.email "bjorn.olav.vangen.aure@outlook.com"
-git config --global user.name "Bjørn Olav Vangen Aure"
+git config --global user.email "bjorn.olav.orsal.aure@hotmail.com"
+git config --global user.name "Bjørn Olav Ørsal Aure"
 ```
 
 Initialize and push a new repo from directory
