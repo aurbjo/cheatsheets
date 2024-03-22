@@ -245,6 +245,12 @@ Start-Sleep -Seconds 30
 Start-ADSyncSyncCycle -PolicyType Initial
 ```
 
+### Azure AD Connect Sync OneLiner
+
+```powershell
+Start-ADSyncSyncCycle -PolicyType Delta;Start-Sleep -Seconds 30;Start-ADSyncSyncCycle -PolicyType Initial
+```
+
 ### Splatting
 
 ```powershell
