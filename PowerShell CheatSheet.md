@@ -225,7 +225,7 @@ Write-LogInfo -LogPath "$LogPath+$LogFile" -Message "[$(Get-Date -Format "dd-MM-
 # Random
 
 ### ACL Export
-```
+```powershell
 $ResultFile = "c:\temp\acl_dump.csv"
 $Folder = "S:\"
 
