@@ -224,6 +224,26 @@ Write-LogInfo -LogPath "$LogPath+$LogFile" -Message "[$(Get-Date -Format "dd-MM-
 
 # Random
 
+### ACL Export
+```
+$ResultFile = "c:\temp\acl_dump.csv"
+$Folder = "S:\"
+
+$AllFolders = Get-ChildItem -Path $Folder -Directory -Recurse
+$AllFolders | ForEach-Object {
+    $CurrentFolder = $_
+    $CurrentACL = Get-Acl -Path $CurrentFolder.FullName
+    $CurrentACL.Access | Where-Object {$_.IsInherited -eq $false} | ForEach-Object {
+        [PSCustomObject]@{
+            Folder = $CurrentFolder.FullName
+            ACLIdentity = $_.IdentityReference
+            ACLType = $_.AccessControlType
+            ACLRights = $_.FileSystemRights
+        }
+    }
+} | ConvertTo-Csv | Out-File -FilePath $ResultFile -Encoding utf8
+```
+
 ### PSWindowsUpdate
 ```powershell
 Install-Module -Name PSWindowsUpdate
