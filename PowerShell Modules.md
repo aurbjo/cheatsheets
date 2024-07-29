@@ -1,3 +1,12 @@
+# Microsoft Entra PowerShell
+```powershell
+Install-Module Microsoft.Graph.Entra -AllowPrerelease -Repository PSGallery -Force
+Connect-Entra -TenantId 'your-tenant-id' -Scopes 'User.Read.All'
+
+Enable-EntraAzureADAlias #enable aliasing
+Get-AzureADUser -Top 1
+```
+
 # Exchange Online
 ```powershell
 Install-Module ExchangeOnline
