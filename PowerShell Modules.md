@@ -1,6 +1,6 @@
 # Microsoft Entra PowerShell
 ```powershell
-Install-Module Microsoft.Graph.Entra -AllowPrerelease -Repository PSGallery -Force
+Install-Module -Name Microsoft.Graph.Entra -Repository PSGallery -Scope CurrentUser -AllowPrerelease -Force
 Connect-Entra -TenantId 'your-tenant-id' -Scopes 'User.Read.All'
 
 Enable-EntraAzureADAlias #enable aliasing
