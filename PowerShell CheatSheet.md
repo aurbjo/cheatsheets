@@ -224,6 +224,19 @@ Write-LogInfo -LogPath "$LogPath+$LogFile" -Message "[$(Get-Date -Format "dd-MM-
 
 # Random
 
+### Random Password generator
+```powershell
+$Password = -join ((65..90) + (97..122) + (48..57) | Get-Random -Count 16 | ForEach-Object {[char]$_})
+```
+
+### UserName Generator
+```powershell
+$FirstName = "Blake"
+$LastName = "Martin"
+$UserName = "$($($LastName).Substring(0, 3).ToLower())$($($FirstName).Substring(0, 3).ToLower())"
+$UserName = "u$UserName"
+```
+
 ### ACL Export
 ```powershell
 $ResultFile = "c:\temp\acl_dump.csv"
