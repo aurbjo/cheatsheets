@@ -268,7 +268,7 @@ Get-WindowsUpdate -AcceptAll -Install -AutoReboot # Get and install with boot
 Get-WindowsUpdate -AcceptAll -Install # Get and install without boot
 ```
 
-### Azure AD Connect
+### Entra ID Connect
 
 ```powershell
 Get-ADSyncScheduler
@@ -278,10 +278,26 @@ Start-Sleep -Seconds 30
 Start-ADSyncSyncCycle -PolicyType Initial
 ```
 
-### Azure AD Connect Sync OneLiner
+### Entra ID Connect Sync OneLiner
 
 ```powershell
 Start-ADSyncSyncCycle -PolicyType Delta;Start-Sleep -Seconds 30;Start-ADSyncSyncCycle -PolicyType Initial
+```
+
+### Entra ID - User Hard Match
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+Install-Module MSOnline
+Connect-MsolService
+
+$ADUserSamAccountName = "lord.vader"
+$ADUserGUID = (Get-ADUser $ADUserSamAccountName).objectGuid
+$GUIDObject = [guid]::New($ADUserGUID)
+$UserImmutableID = [Convert]::ToBase64String($GUIDObject).ToByteArray()
+
+if ($UserImmutableID) {
+    Set-MsolUser -UserPrincipalName lord.vader@empire.org -ImmutableId $UserImmutableID
+}
 ```
 
 ### Splatting
