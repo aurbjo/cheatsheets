@@ -40,7 +40,15 @@ Import-PSSession $session
 
 # SharePoint Online
 ```powershell
-#Unsupported 😣
+Install-Module -Name Microsoft.Online.SharePoint.PowerShell
+
+# If running PS7 (Install-Module in PS5)
+
+# Import-Module in PS7
+Import-Module Microsoft.Online.SharePoint.PowerShell -UseWindowsPowerShell
+
+# Connect
+Connect-SPOService -Url https://<customerUrl>.sharepoint.com/
 ```
 
 # Security & Compliance Center
