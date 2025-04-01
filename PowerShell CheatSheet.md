@@ -289,12 +289,11 @@ Start-ADSyncSyncCycle -PolicyType Delta;Start-Sleep -Seconds 30;Start-ADSyncSync
 Install-Module AzureAD
 Connect-AzureAD
 
-$UserUPN = "anakin.skywalker@empire.net"
-$UserGUID = (Get-ADUser $UserUPN).objectGUID
-$UserImmutableID = [System.Convert]::ToBase64String($UserGUID).ToByteArray()
+$GUID = (Get-ADUser Get-ADuser -Filter "userPrincipalName -eq '$UserUPN'").objectGUID
+$ImmutableID = [System.Convert]::ToBase64String($GUID.ToByteArray())
 
-Set-AzureADUser -ObjectId $ADUserSamAccountName -ImmutableId $UserImmutableID
-Get-AzureADUser -ObjectId $UserUPN | Select-Object UserPrincipalName, ImmutableId
+Set-AzureADUser -ObjectId $UserUPN -ImmutableId $ImmutableID
+Get-AzureADUser -ObjectId $UserUPN | Select-Object userprincipalname, immutableid
 ```
 
 ### Splatting
