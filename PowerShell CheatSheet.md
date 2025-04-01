@@ -286,19 +286,15 @@ Start-ADSyncSyncCycle -PolicyType Delta;Start-Sleep -Seconds 30;Start-ADSyncSync
 
 ### Entra ID - User Hard Match
 ```powershell
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Install-Module MSOnline
-Connect-MsolService
+Install-Module AzureAD
+Connect-AzureAD
 
-$ADUserSamAccountName = "lord.vader@empire.net"
-$ADUserGUID = (Get-ADUser $ADUserSamAccountName).objectGuid
-$GUIDObject = [guid]::New($ADUserGUID)
-$UserImmutableID = [Convert]::ToBase64String($GUIDObject).ToByteArray()
+$UserUPN = "anakin.skywalker@empire.net"
+$UserGUID = (Get-ADUser $UserUPN).objectGUID
+$UserImmutableID = [System.Convert]::ToBase64String($UserGUID).ToByteArray()
 
-if ($UserImmutableID) {
-    Set-AzureADUser -ObjectId $ADUserSamAccountName -ImmutableId $UserImmutableID
-    Get-AzureADUser -ObjectId $UserUPN | Select-Object userprincipalname, immutableid
-}
+Set-AzureADUser -ObjectId $ADUserSamAccountName -ImmutableId $UserImmutableID
+Get-AzureADUser -ObjectId $UserUPN | Select-Object UserPrincipalName, ImmutableId
 ```
 
 ### Splatting
