@@ -290,13 +290,14 @@ Start-ADSyncSyncCycle -PolicyType Delta;Start-Sleep -Seconds 30;Start-ADSyncSync
 Install-Module MSOnline
 Connect-MsolService
 
-$ADUserSamAccountName = "lord.vader"
+$ADUserSamAccountName = "lord.vader@empire.net"
 $ADUserGUID = (Get-ADUser $ADUserSamAccountName).objectGuid
 $GUIDObject = [guid]::New($ADUserGUID)
 $UserImmutableID = [Convert]::ToBase64String($GUIDObject).ToByteArray()
 
 if ($UserImmutableID) {
-    Set-MsolUser -UserPrincipalName lord.vader@empire.org -ImmutableId $UserImmutableID
+    Set-AzureADUser -ObjectId $ADUserSamAccountName -ImmutableId $UserImmutableID
+    Get-AzureADUser -ObjectId $UserUPN | Select-Object userprincipalname, immutableid
 }
 ```
 
