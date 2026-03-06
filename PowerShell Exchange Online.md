@@ -57,7 +57,7 @@ $AccessRightsToAdd = "Reviewer"
 Get-Mailbox -RecipientTypeDetails UserMailbox | ForEach-Object {
     $Mailbox = $_
     $CalendarFolder = Get-MailboxFolderStatistics -Identity $Mailbox.PrimarySmtpAddress -FolderScope Calendar | Where-Object {$_.FolderType -eq "Calendar"}
-    $CalendarFolderPath = "$($Mailbox.PrimarySmtpAddress):\$($CalendarFolder.Name)"
+    $CalendarFolderPath = "$($Mailbox.GUID):\$($CalendarFolder.Name)"
     $CalendarFolderPermissions = Get-MailboxFolderPermission -Identity $CalendarFolderPath -User $UserToAdd
      
     If($CalendarFolderPermissions.AccessRights -ne $AccessRightsToAdd){
